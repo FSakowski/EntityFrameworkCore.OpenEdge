@@ -1,23 +1,25 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Query.ExpressionVisitors.Internal;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Query.Internal;
-using Remotion.Linq.Parsing.ExpressionVisitors.TreeEvaluation;
 
 namespace EntityFrameworkCore.OpenEdge.Query.ExpressionVisitors.Internal
 {
-    public class OpenEdgeParameterExtractingExpressionVisitor : ParameterExtractingExpressionVisitor
+    /*public class OpenEdgeParameterExtractingExpressionVisitor : ParameterExtractingExpressionVisitor
     {
         public OpenEdgeParameterExtractingExpressionVisitor(IEvaluatableExpressionFilter evaluatableExpressionFilter,
             IParameterValues parameterValues,
             IDiagnosticsLogger<DbLoggerCategory.Query> logger,
-            DbContext context,
+            Type contextType,
+            IModel model,
             bool parameterize, bool
                 generateContextAccessors = false)
-            : base(evaluatableExpressionFilter, parameterValues, logger, context, parameterize, generateContextAccessors)
+            : base(evaluatableExpressionFilter, parameterValues, contextType, model, logger, parameterize, generateContextAccessors)
         {
         }
 
@@ -70,5 +72,5 @@ namespace EntityFrameworkCore.OpenEdge.Query.ExpressionVisitors.Internal
 
             return base.VisitMethodCall(methodCallExpression);
         }
-    }
+    }*/
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using EntityFrameworkCore.OpenEdge.Extensions;
@@ -29,8 +26,12 @@ namespace EntityFrameworkCore.OpenEdge.Update
                 .Append("1 = 1");
         }
 
+        protected override void AppendValues(StringBuilder commandStringBuilder, string name, string schema, IReadOnlyList<ColumnModification> operations)
+        {
+            AppendValues(commandStringBuilder, operations);
+        }
 
-        protected override void AppendValues(StringBuilder commandStringBuilder, IReadOnlyList<ColumnModification> operations)
+        protected void AppendValues(StringBuilder commandStringBuilder, IReadOnlyList<ColumnModification> operations)
         {
             bool useLiterals = true;
 

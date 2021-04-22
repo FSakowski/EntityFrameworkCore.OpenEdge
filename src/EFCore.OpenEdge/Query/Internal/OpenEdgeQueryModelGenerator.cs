@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using EntityFrameworkCore.OpenEdge.Query.ExpressionVisitors.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Remotion.Linq.Parsing.ExpressionVisitors.TreeEvaluation;
 
 namespace EntityFrameworkCore.OpenEdge.Query.Internal
 {
-    public class OpenEdgeQueryModelGenerator : QueryModelGenerator
+    /*public class OpenEdgeQueryModelGenerator : QueryModelGenerator
     {
         private readonly IEvaluatableExpressionFilter _evaluatableExpressionFilter;
         private readonly ICurrentDbContext _currentDbContext;
@@ -30,5 +26,5 @@ namespace EntityFrameworkCore.OpenEdge.Query.Internal
                 _currentDbContext.Context,
                 parameterize, generateContextAccessors).ExtractParameters(query);
         }
-    }
+    }*/
 }

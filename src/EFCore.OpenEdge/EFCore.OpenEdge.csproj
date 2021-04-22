@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>EntityFrameworkCore.OpenEdge</AssemblyName>
     <RootNamespace>EntityFrameworkCore.OpenEdge</RootNamespace>
     <LangVersion>7.2</LangVersion>
@@ -21,16 +21,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.11</Version>
-    <PackageReleaseNotes>Map missing types clob, blob, double, recid, don't insert rowid.</PackageReleaseNotes>
+    <Version>5.0.5</Version>
+    <PackageReleaseNotes>Updated EF Core to version 5.</PackageReleaseNotes>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="[2.1.4,2.2)" PrivateAssets="none" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="[2.1.4,2.2)" PrivateAssets="none" />
-    <PackageReference Include="System.Data.Odbc" Version="4.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" PrivateAssets="none" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.5" PrivateAssets="none" />
+    <PackageReference Include="System.Data.Odbc" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

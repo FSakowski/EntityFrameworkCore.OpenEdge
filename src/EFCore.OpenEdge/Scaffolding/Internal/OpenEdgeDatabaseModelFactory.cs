@@ -14,14 +14,28 @@ using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace EntityFrameworkCore.OpenEdge.Scaffolding.Internal
 {
-    public class OpenEdgeDatabaseModelFactory : IDatabaseModelFactory
+    public class OpenEdgeDatabaseModelFactory : DatabaseModelFactory
     {
         protected internal const string DatabaseModelDefaultSchema = "pub";
+#pragma warning disable IDE0052 // Ungelesene private Member entfernen
         private readonly IDiagnosticsLogger<DbLoggerCategory.Scaffolding> _logger;
+#pragma warning restore IDE0052 // Ungelesene private Member entfernen
+
+
 
         public OpenEdgeDatabaseModelFactory(IDiagnosticsLogger<DbLoggerCategory.Scaffolding> logger)
         {
             _logger = logger;
+        }
+
+        public override DatabaseModel Create(string connectionString, DatabaseModelFactoryOptions options)
+        {
+            return Create(connectionString, options.Tables, options.Schemas);
+        }
+
+        public override DatabaseModel Create(DbConnection connection, DatabaseModelFactoryOptions options)
+        {
+            return Create(connection, options.Tables, options.Schemas);
         }
 
         public DatabaseModel Create(string connectionString, IEnumerable<string> tables, IEnumerable<string> schemas)
@@ -182,9 +196,5 @@ FROM ""pub"".""_File"" t ";
                 }
             }
         }
-
-
-        private static string DisplayName(string schema, string name)
-            => (!string.IsNullOrEmpty(schema) ? schema + "." : "") + name;
     }
 }

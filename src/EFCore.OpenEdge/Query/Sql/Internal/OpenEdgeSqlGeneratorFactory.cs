@@ -1,17 +1,21 @@
-using Microsoft.EntityFrameworkCore.Query.Expressions;
-using Microsoft.EntityFrameworkCore.Query.Sql;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace EntityFrameworkCore.OpenEdge.Query.Sql.Internal
 {
-    public class OpenEdgeSqlGeneratorFactory : QuerySqlGeneratorFactoryBase
+    public class OpenEdgeSqlGeneratorFactory : IQuerySqlGeneratorFactory
     {
+        private readonly QuerySqlGeneratorDependencies _dependencies;
+        private readonly IRelationalTypeMappingSource _typeMappingSource;
+
         public OpenEdgeSqlGeneratorFactory(
-            QuerySqlGeneratorDependencies dependencies)
-            : base(dependencies)
+            QuerySqlGeneratorDependencies dependencies, IRelationalTypeMappingSource typeMappingSource)
         {
+            _dependencies = dependencies;
+            _typeMappingSource = typeMappingSource;
         }
 
-        public override IQuerySqlGenerator CreateDefault(SelectExpression selectExpression)
-            => new OpenEdgeSqlGenerator(Dependencies, selectExpression);
+        public virtual QuerySqlGenerator Create()
+            => new OpenEdgeSqlGenerator(_dependencies, _typeMappingSource);
     }
 }
