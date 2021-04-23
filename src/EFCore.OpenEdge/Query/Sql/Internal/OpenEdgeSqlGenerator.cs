@@ -82,7 +82,7 @@ namespace EntityFrameworkCore.OpenEdge.Query.Sql.Internal
             return existsExpression;
         }
 
-        protected override void GenerateTop(SelectExpression selectExpression)
+        protected override void GenerateTop([NotParameterized] SelectExpression selectExpression)
         {
             if (selectExpression.Limit != null
                 && selectExpression.Offset == null)
@@ -93,6 +93,16 @@ namespace EntityFrameworkCore.OpenEdge.Query.Sql.Internal
                 Visit(selectExpression.Limit);
 
                 Sql.Append(" ");
+            }
+        }
+
+        protected override void GenerateLimitOffset(SelectExpression selectExpression)
+        {
+            // openedge does not allow top and limit/offset in one statement:
+            // Error in SQL statement: ODBC - call returned[-1] : [HY000][-20398][DataDirect][ODBC Progress OpenEdge Wire Protocol driver][OPENEDGE]OFFSET - FETCH clause used in an unsupported context(16764)
+            if (selectExpression.Offset != null)
+            {
+                base.GenerateLimitOffset(selectExpression);
             }
         }
     }

@@ -10,15 +10,17 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace EntityFrameworkCore.OpenEdge.Query.ExpressionVisitors.Internal
 {
-    /*public class OpenEdgeParameterExtractingExpressionVisitor : ParameterExtractingExpressionVisitor
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "EF1001:Internal EF Core API usage.", Justification = "<Ausstehend>")]
+    public class OpenEdgeParameterExtractingExpressionVisitor : ParameterExtractingExpressionVisitor
     {
-        public OpenEdgeParameterExtractingExpressionVisitor(IEvaluatableExpressionFilter evaluatableExpressionFilter,
+        public OpenEdgeParameterExtractingExpressionVisitor(
+            IEvaluatableExpressionFilter evaluatableExpressionFilter,
             IParameterValues parameterValues,
-            IDiagnosticsLogger<DbLoggerCategory.Query> logger,
             Type contextType,
             IModel model,
-            bool parameterize, bool
-                generateContextAccessors = false)
+            IDiagnosticsLogger<DbLoggerCategory.Query> logger,
+            bool parameterize,
+            bool generateContextAccessors = false)
             : base(evaluatableExpressionFilter, parameterValues, contextType, model, logger, parameterize, generateContextAccessors)
         {
         }
@@ -72,5 +74,5 @@ namespace EntityFrameworkCore.OpenEdge.Query.ExpressionVisitors.Internal
 
             return base.VisitMethodCall(methodCallExpression);
         }
-    }*/
+    }
 }
