@@ -82,7 +82,7 @@ namespace EntityFrameworkCore.OpenEdge.Query.Sql.Internal
             return existsExpression;
         }
 
-        protected override void GenerateTop([NotParameterized] SelectExpression selectExpression)
+        protected override void GenerateTop(SelectExpression selectExpression)
         {
             if (selectExpression.Limit != null
                 && selectExpression.Offset == null)
