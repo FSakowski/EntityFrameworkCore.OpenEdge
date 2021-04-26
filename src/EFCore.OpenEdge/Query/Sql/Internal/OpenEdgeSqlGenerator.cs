@@ -17,29 +17,29 @@ namespace EntityFrameworkCore.OpenEdge.Query.Sql.Internal
         {
             _typeMappingSource = typeMappingSource;
         }
-        
-        protected override Expression VisitParameter(ParameterExpression parameterExpression)
+
+        protected override Expression VisitSqlParameter(SqlParameterExpression sqlParameterExpression)
         {
-            var parameterName = Dependencies.SqlGenerationHelper.GenerateParameterName(parameterExpression.Name);
+            var parameterName = Dependencies.SqlGenerationHelper.GenerateParameterName(sqlParameterExpression.Name);
 
             if (Sql.Parameters
-                .All(p => p.InvariantName != parameterExpression.Name))
+                .All(p => p.InvariantName != sqlParameterExpression.Name))
             {
                 var typeMapping
-                    = _typeMappingSource.GetMapping(parameterExpression.Type);
+                    = _typeMappingSource.GetMapping(sqlParameterExpression.Type);
 
                 Sql.AddParameter(
-                    parameterExpression.Name,
+                    sqlParameterExpression.Name,
                     parameterName,
                     typeMapping,
-                    parameterExpression.Type.IsNullableType());
+                    sqlParameterExpression.Type.IsNullableType());
             }
 
             // Named parameters not supported in the command text
             // Need to use '?' instead
             Sql.Append("?");
 
-            return parameterExpression;
+            return sqlParameterExpression;
         }
 
         protected override Expression VisitConditional(ConditionalExpression conditionalExpression)
